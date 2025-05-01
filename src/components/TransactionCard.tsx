@@ -7,6 +7,7 @@ import { Box, Typography } from "@mui/material";
 interface TransactionCardProps {
   transaction: Transaction;
   showDate?: boolean;
+  balance: number;
 }
 
 const Card = styled(Box)(({ theme }) => ({
@@ -64,9 +65,11 @@ const Time = styled(Typography)(({ theme }) => ({
 const TransactionCard: React.FC<TransactionCardProps> = ({
   transaction,
   showDate = true,
+  balance,
 }) => {
   const navigate = useNavigate();
 
+  // 날짜가 string이면 Date 객체로 변환
   const formattedDate = transaction.date.toLocaleDateString("ko-KR", {
     month: "2-digit",
     day: "2-digit",
@@ -96,7 +99,7 @@ const TransactionCard: React.FC<TransactionCardProps> = ({
       <MainRow>
         <Date sx={{ visibility: "hidden" }}>{formattedDate}</Date>
         <Time>{transaction.time}</Time>
-        <AmountTotal>{formattedAmount}원</AmountTotal>
+        <AmountTotal>{balance.toLocaleString()}원</AmountTotal>
       </MainRow>
     </Card>
   );

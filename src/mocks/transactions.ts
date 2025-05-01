@@ -4,7 +4,7 @@ export interface PurchaseItem {
     quantity: number;
     unitPrice: number;
     totalPrice: number;
-    categoriyId?: number;
+    categoryId?: number; // 오타 수정 및 명확화
 }
 
 export interface Transaction {
@@ -21,7 +21,7 @@ export interface Transaction {
 export const transactions: Transaction[] = [
     {
         id: '1',
-        date: new Date('2024-03-20'),
+        date: new Date('2025-04-20'),
         time: '09:00',
         description: '월급',
         amount: 3000000,
@@ -30,7 +30,7 @@ export const transactions: Transaction[] = [
     },
     {
         id: '2',
-        date: new Date('2024-03-21'),
+        date: new Date('2025-04-21'),
         time: '12:30',
         description: '점심식사',
         amount: 12000,
@@ -39,7 +39,7 @@ export const transactions: Transaction[] = [
     },
     {
         id: '3',
-        date: new Date('2024-03-21'),
+        date: new Date('2025-04-21'),
         time: '13:15',
         description: '교통비',
         amount: 1500,
@@ -48,7 +48,7 @@ export const transactions: Transaction[] = [
     },
     {
         id: '4',
-        date: new Date('2024-03-22'),
+        date: new Date('2025-04-22'),
         time: '10:30',
         description: '커피',
         amount: 4500,
@@ -57,7 +57,7 @@ export const transactions: Transaction[] = [
     },
     {
         id: '5',
-        date: new Date('2024-03-22'),
+        date: new Date('2025-04-22'),
         time: '11:00',
         description: '저축',
         amount: 500000,
@@ -66,7 +66,7 @@ export const transactions: Transaction[] = [
     },
     {
         id: '6',
-        date: new Date('2024-03-23'),
+        date: new Date('2025-04-23'),
         time: '15:30',
         description: '다이소',
         amount: 15000,
@@ -78,34 +78,38 @@ export const transactions: Transaction[] = [
                 name: '주방세제',
                 quantity: 1,
                 unitPrice: 2000,
-                totalPrice: 2000
+                totalPrice: 2000,
+                categoryId: 4 // 다이소(오락)로 지정
             },
             {
                 id: 'item2',
                 name: '휴지',
                 quantity: 2,
                 unitPrice: 3000,
-                totalPrice: 6000
+                totalPrice: 6000,
+                categoryId: 6
             },
             {
                 id: 'item3',
                 name: '쓰레기봉투',
                 quantity: 1,
                 unitPrice: 4000,
-                totalPrice: 4000
+                totalPrice: 4000,
+                categoryId: 6
             },
             {
                 id: 'item4',
                 name: '세탁망',
                 quantity: 1,
                 unitPrice: 3000,
-                totalPrice: 3000
+                totalPrice: 3000,
+                categoryId: 6
             }
         ]
     },
     {
         id: "7",
-        date: new Date("2024-03-20"),
+        date: new Date("2025-04-20"),
         time: "11:00",
         description: "이마트",
         amount: 35000,
@@ -114,7 +118,7 @@ export const transactions: Transaction[] = [
     },
     {
         id: "8",
-        date: new Date("2024-03-19"),
+        date: new Date("2025-04-19"),
         time: "12:00",
         description: "버거킹",
         amount: 9800,
@@ -123,7 +127,7 @@ export const transactions: Transaction[] = [
     },
     {
         id: "9",
-        date: new Date("2024-03-19"),
+        date: new Date("2025-04-19"),
         time: "13:00",
         description: "GS25",
         amount: 4500,
@@ -132,7 +136,7 @@ export const transactions: Transaction[] = [
     },
     {
         id: "10",
-        date: new Date("2024-03-19"),
+        date: new Date("2025-04-19"),
         time: "14:00",
         description: "CGV",
         amount: 15000,
@@ -141,7 +145,7 @@ export const transactions: Transaction[] = [
     },
     {
         id: "11",
-        date: new Date("2024-03-18"),
+        date: new Date("2025-04-18"),
         time: "10:00",
         description: "교보문고",
         amount: 22000,
@@ -150,7 +154,7 @@ export const transactions: Transaction[] = [
     },
     {
         id: "12",
-        date: new Date("2024-03-18"),
+        date: new Date("2025-04-18"),
         time: "11:00",
         description: "올리브영",
         amount: 28000,
@@ -159,7 +163,7 @@ export const transactions: Transaction[] = [
     },
     {
         id: "13",
-        date: new Date("2024-03-18"),
+        date: new Date("2025-04-18"),
         time: "12:00",
         description: "CU",
         amount: 3200,
@@ -168,7 +172,7 @@ export const transactions: Transaction[] = [
     },
     {
         id: "14",
-        date: new Date("2024-03-17"),
+        date: new Date("2025-04-17"),
         time: "10:00",
         description: "투썸플레이스",
         amount: 7000,
@@ -177,7 +181,7 @@ export const transactions: Transaction[] = [
     },
     {
         id: "15",
-        date: new Date("2024-03-17"),
+        date: new Date("2025-04-17"),
         time: "11:00",
         description: "롯데마트",
         amount: 67000,
@@ -186,7 +190,7 @@ export const transactions: Transaction[] = [
     },
     {
         id: "16",
-        date: new Date("2024-03-17"),
+        date: new Date("2025-04-17"),
         time: "12:00",
         description: "맥도날드",
         amount: 8900,
@@ -195,7 +199,7 @@ export const transactions: Transaction[] = [
     },
     {
         id: "17",
-        date: new Date("2024-03-16"),
+        date: new Date("2025-04-16"),
         time: "10:00",
         description: "유니클로",
         amount: 49000,
@@ -204,7 +208,7 @@ export const transactions: Transaction[] = [
     },
     {
         id: "18",
-        date: new Date("2024-03-16"),
+        date: new Date("2025-04-16"),
         time: "11:00",
         description: "다이소",
         amount: 12000,
@@ -213,7 +217,7 @@ export const transactions: Transaction[] = [
     },
     {
         id: "19",
-        date: new Date("2024-03-16"),
+        date: new Date("2025-04-16"),
         time: "12:00",
         description: "스타벅스",
         amount: 5100,
@@ -222,7 +226,7 @@ export const transactions: Transaction[] = [
     },
     {
         id: "20",
-        date: new Date("2024-03-15"),
+        date: new Date("2025-04-15"),
         time: "10:00",
         description: "이디야커피",
         amount: 4500,
@@ -231,7 +235,7 @@ export const transactions: Transaction[] = [
     },
     {
         id: "21",
-        date: new Date("2024-03-15"),
+        date: new Date("2025-04-15"),
         time: "11:00",
         description: "홈플러스",
         amount: 45000,
@@ -240,7 +244,7 @@ export const transactions: Transaction[] = [
     },
     {
         id: "22",
-        date: new Date("2024-03-15"),
+        date: new Date("2025-04-15"),
         time: "12:00",
         description: "GS25",
         amount: 6300,
@@ -249,7 +253,7 @@ export const transactions: Transaction[] = [
     },
     {
         id: "23",
-        date: new Date("2024-03-14"),
+        date: new Date("2025-04-14"),
         time: "10:00",
         description: "메가커피",
         amount: 3000,
@@ -258,7 +262,7 @@ export const transactions: Transaction[] = [
     },
     {
         id: "24",
-        date: new Date("2024-03-14"),
+        date: new Date("2025-04-14"),
         time: "11:00",
         description: "CU",
         amount: 8400,
@@ -267,7 +271,7 @@ export const transactions: Transaction[] = [
     },
     {
         id: "25",
-        date: new Date("2024-03-14"),
+        date: new Date("2025-04-14"),
         time: "12:00",
         description: "버거킹",
         amount: 10200,
@@ -276,7 +280,7 @@ export const transactions: Transaction[] = [
     },
     {
         id: "26",
-        date: new Date("2024-03-13"),
+        date: new Date("2025-04-13"),
         time: "10:00",
         description: "스타벅스",
         amount: 6800,
@@ -285,7 +289,7 @@ export const transactions: Transaction[] = [
     },
     {
         id: "27",
-        date: new Date("2024-03-13"),
+        date: new Date("2025-04-13"),
         time: "11:00",
         description: "이마트",
         amount: 28000,
@@ -294,7 +298,7 @@ export const transactions: Transaction[] = [
     },
     {
         id: "28",
-        date: new Date("2024-03-13"),
+        date: new Date("2025-04-13"),
         time: "12:00",
         description: "CGV",
         amount: 15000,
@@ -303,7 +307,7 @@ export const transactions: Transaction[] = [
     },
     {
         id: "29",
-        date: new Date("2024-03-12"),
+        date: new Date("2025-04-12"),
         time: "10:00",
         description: "올리브영",
         amount: 32000,
@@ -312,7 +316,7 @@ export const transactions: Transaction[] = [
     },
     {
         id: "30",
-        date: new Date("2024-03-12"),
+        date: new Date("2025-04-12"),
         time: "11:00",
         description: "GS25",
         amount: 5600,
@@ -321,7 +325,7 @@ export const transactions: Transaction[] = [
     },
     {
         id: "31",
-        date: new Date("2024-03-12"),
+        date: new Date("2025-04-12"),
         time: "12:00",
         description: "투썸플레이스",
         amount: 6500,
@@ -330,7 +334,7 @@ export const transactions: Transaction[] = [
     },
     {
         id: "32",
-        date: new Date("2024-03-11"),
+        date: new Date("2025-04-11"),
         time: "10:00",
         description: "맥도날드",
         amount: 9800,
@@ -339,7 +343,7 @@ export const transactions: Transaction[] = [
     },
     {
         id: "33",
-        date: new Date("2024-03-11"),
+        date: new Date("2025-04-11"),
         time: "11:00",
         description: "다이소",
         amount: 15000,
@@ -348,7 +352,7 @@ export const transactions: Transaction[] = [
     },
     {
         id: "34",
-        date: new Date("2024-03-11"),
+        date: new Date("2025-04-11"),
         time: "12:00",
         description: "스타벅스",
         amount: 7200,
@@ -357,11 +361,11 @@ export const transactions: Transaction[] = [
     },
     {
         id: "35",
-        date: new Date("2024-03-10"),
+        date: new Date("2025-04-10"),
         time: "10:00",
         description: "이마트",
         amount: 42000,
         categoryId: 2,
         type: "expense"
     }
-]; 
+];

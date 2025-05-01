@@ -1,38 +1,58 @@
-import { Typography, Box, Button } from "@mui/material";
+import { Typography, Box } from "@mui/material";
 import { useParams } from "react-router-dom";
-import { transactions } from "../mocks/transactions";
 import { categories } from "../mocks/categories";
 import PageHeader from "../components/PageHeader";
 import PurchaseItemList from "../components/PurchaseItemList";
-import CameraAltIcon from "@mui/icons-material/CameraAlt";
-import { useRef } from "react";
+import { useRef, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { AppDispatch, RootState } from "../store/store";
+import { uploadReceipt } from "../store/transactionsSlice";
+import ReceiptUploadButton from "../components/ReceiptUploadButton";
 
 const TransactionDetail = () => {
+  // ====== 변수 선언부 (정렬) ======
   const { id } = useParams();
+  const dispatch = useDispatch<AppDispatch>();
+  const transactions = useSelector(
+    (state: RootState) => state.transactions.transactions
+  );
+  const receiptUploadLoading = useSelector(
+    (state: RootState) => state.transactions.receiptUploadLoading
+  );
   const fileInputRef = useRef<HTMLInputElement>(null);
-
+  const topRef = useRef<HTMLDivElement>(null);
   const transaction = transactions.find((t) => t.id === id);
+  const dateObj = transaction?.date;
   const category = categories.find((c) => c.id === transaction?.categoryId);
 
+  // ====== 이펙트 ======
+  useEffect(() => {
+    // 페이지 진입 시 스크롤 맨 위로 이동
+    topRef.current?.scrollIntoView({ behavior: "auto" });
+    window.scrollTo({ top: 0, behavior: "auto" });
+  }, []);
+
+  // ====== 핸들러 ======
   // 버튼 누르면 <input type="file"> 트리거
   const handleReceiptScan = () => {
     fileInputRef.current?.click();
   };
 
   // 이미지 파일이 선택(또는 촬영)된 뒤 호출
-  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleFileChange = async (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
     const file = event.target.files?.[0];
-    if (!file) return;
-
+    if (!file || !transaction) return;
     const reader = new FileReader();
-    reader.onload = (e) => {
+    reader.onload = async (e) => {
       const imageData = e.target?.result as string;
-      console.log("선택된 이미지:", imageData);
-      // TODO: 서버 전송 등 처리
+      dispatch(uploadReceipt({ transactionId: transaction.id, imageData }));
     };
     reader.readAsDataURL(file);
   };
 
+  // ====== 렌더 ======
   /* --- 거래가 없을 때 --- */
   if (!transaction) {
     return (
@@ -43,19 +63,21 @@ const TransactionDetail = () => {
   }
 
   /* --- 날짜·금액 포맷 --- */
-  const formattedDate = new Date(transaction.date).toLocaleDateString("ko-KR", {
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-    weekday: "long",
-  });
+  const formattedDate = dateObj
+    ? dateObj.toLocaleDateString("ko-KR", {
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+        weekday: "long",
+      })
+    : "";
   const formattedAmount = new Intl.NumberFormat("ko-KR").format(
     transaction.amount
   );
 
   /* --- 실제 렌더링 --- */
   return (
-    <Box>
+    <Box ref={topRef}>
       <PageHeader title="상세 내역" showBackButton />
 
       {/* 거래 기본 정보 카드 */}
@@ -81,6 +103,7 @@ const TransactionDetail = () => {
                 transaction.type === "income" ? "primary.main" : "error.main",
             }}
           >
+            {transaction.type === "expense" ? "-" : ""}
             {formattedAmount}원
           </Typography>
         </Box>
@@ -117,6 +140,7 @@ const TransactionDetail = () => {
           </Typography>
         </Box>
 
+        {/* 구매 항목 */}
         {transaction.items && transaction.items.length > 0 && (
           <PurchaseItemList items={transaction.items} />
         )}
@@ -124,29 +148,11 @@ const TransactionDetail = () => {
 
       {/* 영수증 촬영/업로드 버튼 */}
       <Box sx={{ p: 2 }}>
-        <Button
-          variant="contained"
-          fullWidth
-          startIcon={<CameraAltIcon />}
+        <ReceiptUploadButton
+          uploading={!!receiptUploadLoading}
           onClick={handleReceiptScan}
-          sx={{
-            py: 1.5,
-            borderRadius: 2,
-            textTransform: "none",
-            fontWeight: 600,
-          }}
-        >
-          영수증 촬영 / 업로드
-        </Button>
-
-        {/* 모바일:카메라 / 데스크톱:파일창 */}
-        <input
-          type="file"
-          accept="image/*"
-          capture="environment" /* 후면 카메라 우선 */
-          ref={fileInputRef}
-          onChange={handleFileChange}
-          style={{ display: "none" }}
+          fileInputRef={fileInputRef}
+          onFileChange={handleFileChange}
         />
       </Box>
     </Box>
