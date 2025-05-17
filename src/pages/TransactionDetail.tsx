@@ -48,6 +48,10 @@ const TransactionDetail = () => {
     reader.onload = async (e) => {
       const imageData = e.target?.result as string;
       dispatch(uploadReceipt({ transactionId: transaction.id, imageData }));
+      // 파일 입력 초기화
+      if (fileInputRef.current) {
+        fileInputRef.current.value = "";
+      }
     };
     reader.readAsDataURL(file);
   };

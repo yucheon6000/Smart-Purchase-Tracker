@@ -173,7 +173,7 @@ const Statistics = () => {
                   dataKey="name"
                   type="category"
                   tick={{ fontSize: 16, fill: theme.palette.text.primary }}
-                  width={40}
+                  width={50}
                   stroke={theme.palette.text.secondary}
                   axisLine={{ stroke: "0" }}
                   tickLine={{ stroke: "0" }}

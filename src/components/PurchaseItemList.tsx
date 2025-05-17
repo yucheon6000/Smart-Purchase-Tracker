@@ -39,7 +39,7 @@ const PurchaseItemList: React.FC<PurchaseItemListProps> = ({ items }) => {
                       fontWeight: 500,
                       bgcolor: category?.color || "#eee",
                       color: "#fff",
-                      minWidth: 40,
+                      minWidth: 60,
                       textAlign: "center",
                       mr: 1.5,
                     }}
@@ -47,10 +47,18 @@ const PurchaseItemList: React.FC<PurchaseItemListProps> = ({ items }) => {
                     {category?.name || "기타"}
                   </Box>
                   <Box>
-                    <Typography variant="body1" sx={{ fontWeight: 500 }}>
+                    <Typography
+                      variant="body1"
+                      sx={{ fontWeight: 500, textAlign: "start" }}
+                    >
                       {item.name}
                     </Typography>
-                    <Typography variant="body2" color="text.secondary">
+
+                    <Typography
+                      variant="body2"
+                      color="text.secondary"
+                      sx={{ textAlign: "start" }}
+                    >
                       {item.quantity}개 × {item.unitPrice.toLocaleString()}원
                     </Typography>
                   </Box>

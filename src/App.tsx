@@ -16,7 +16,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { setTransactions } from "./store/transactionsSlice";
 import { RootState } from "./store/store";
 
-const TRANSACTIONS_VERSION = "2025-05-03";
+const TRANSACTIONS_VERSION = "2025-05-17";
 
 // window.__INITIALIZED__ 타입 선언 (전역 확장)
 declare global {
