@@ -13,7 +13,7 @@ export const uploadReceipt = createAsyncThunk(
   ) => {
     try {
       const response = await fetch(
-        'http://15.165.92.130:8000/predict',
+        'https://api.spt.yucheon.io/predict',
         {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
