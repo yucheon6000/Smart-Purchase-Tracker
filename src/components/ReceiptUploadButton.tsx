@@ -16,6 +16,14 @@ const ReceiptUploadButton = ({
   onFileChange,
 }: ReceiptUploadButtonProps) => (
   <>
+    <input
+      type="file"
+      accept="image/*"
+      capture="environment"
+      ref={fileInputRef}
+      onChange={onFileChange}
+      style={{ display: "none" }}
+    />
     <Button
       variant="contained"
       fullWidth
@@ -38,14 +46,6 @@ const ReceiptUploadButton = ({
       )}
       {uploading ? "분석 중..." : "영수증 촬영"}
     </Button>
-    <input
-      type="file"
-      accept="image/*"
-      capture="environment"
-      ref={fileInputRef}
-      onChange={onFileChange}
-      style={{ display: "none" }}
-    />
   </>
 );
 

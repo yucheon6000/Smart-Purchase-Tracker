@@ -60,16 +60,16 @@ const Statistics = () => {
     return key === currentPeriodKey && t.type === "expense";
   });
 
-  // 카테고리별 합계 계산 (items 우선, 없으면 transaction)
+  // 카테고리별 합계 계산 (items만 기준)
   const categorySums: Record<number, number> = {};
   filtered.forEach((t) => {
     if (t.items && t.items.length > 0) {
       t.items.forEach((item) => {
-        const catId = item.categoryId ?? t.categoryId;
-        categorySums[catId] = (categorySums[catId] || 0) + item.totalPrice;
+        const catId = item.categoryId;
+        if (catId !== undefined) {
+          categorySums[catId] = (categorySums[catId] || 0) + item.totalPrice;
+        }
       });
-    } else {
-      categorySums[t.categoryId] = (categorySums[t.categoryId] || 0) + t.amount;
     }
   });
 
@@ -173,7 +173,7 @@ const Statistics = () => {
                   dataKey="name"
                   type="category"
                   tick={{ fontSize: 16, fill: theme.palette.text.primary }}
-                  width={50}
+                  width={80}
                   stroke={theme.palette.text.secondary}
                   axisLine={{ stroke: "0" }}
                   tickLine={{ stroke: "0" }}

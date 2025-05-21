@@ -24,16 +24,35 @@ export const uploadReceipt = createAsyncThunk(
       if (result.purchaseItems) {
         // 카테고리 문자열을 ID로 변환
         const mappedItems = result.purchaseItems.map((item: { item: string; count: number; price_per_one: number; price: number; category: string }): PurchaseItem => {
-          const category = categories.find(c => c.fullName === item.category);
+          const category = categories.find(c => c.fullName == item.category);
           return {
             id: Math.random().toString(36).substr(2, 9), // 임시 ID 생성
             name: item.item,
             quantity: item.count,
             unitPrice: item.price_per_one,
             totalPrice: item.price,
-            categoryId: category?.id || -1 // 매칭되는 카테고리가 없으면 -1(기타)으로 설정
+            categoryId: category?.id // 매칭되는 카테고리가 없으면 undefined
           };
         });
+
+        // mappedItems의 합계로 amount 계산
+        const amount = mappedItems.reduce((sum: number, item: PurchaseItem) => sum + item.totalPrice, 0);
+
+        // 새로운 거래내역 생성 (TransactionList에서 호출된 경우)
+        if (transactionId === "new") {
+          const newTransaction: Transaction = {
+            id: Math.random().toString(36).substr(2, 9),
+            date: new Date(result.date),
+            time: result.time,
+            description: result.description,
+            amount: amount, // mappedItems의 합계로 설정
+            type: 'expense',
+            items: mappedItems
+          };
+          return { transactionId, purchaseItems: mappedItems, newTransaction };
+        }
+
+        // 기존 거래내역 업데이트 (TransactionDetail에서 호출된 경우)
         return { transactionId, purchaseItems: mappedItems };
       } else {
         return rejectWithValue(result.error || 'No purchase items');
@@ -88,13 +107,20 @@ const transactionsSlice = createSlice({
       })
       .addCase(uploadReceipt.fulfilled, (state, action) => {
         state.receiptUploadLoading = false;
-        const { transactionId, purchaseItems } = action.payload;
-        const idx = state.transactions.findIndex(t => t.id === transactionId);
-        if (idx !== -1) {
-          state.transactions[idx] = {
-            ...state.transactions[idx],
-            items: purchaseItems,
-          };
+        const { transactionId, purchaseItems, newTransaction } = action.payload;
+
+        if (newTransaction) {
+          // 새로운 거래내역 추가 (TransactionList에서 호출된 경우)
+          state.transactions.unshift(newTransaction);
+        } else {
+          // 기존 거래내역 업데이트 (TransactionDetail에서 호출된 경우)
+          const idx = state.transactions.findIndex(t => t.id === transactionId);
+          if (idx !== -1) {
+            state.transactions[idx] = {
+              ...state.transactions[idx],
+              items: purchaseItems,
+            };
+          }
         }
       })
       .addCase(uploadReceipt.rejected, (state, action) => {

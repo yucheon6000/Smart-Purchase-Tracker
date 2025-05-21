@@ -1,6 +1,5 @@
 import { Typography, Box } from "@mui/material";
 import { useParams } from "react-router-dom";
-import { categories } from "../mocks/categories";
 import PageHeader from "../components/PageHeader";
 import PurchaseItemList from "../components/PurchaseItemList";
 import { useRef, useEffect } from "react";
@@ -23,7 +22,6 @@ const TransactionDetail = () => {
   const topRef = useRef<HTMLDivElement>(null);
   const transaction = transactions.find((t) => t.id === id);
   const dateObj = transaction?.date;
-  const category = categories.find((c) => c.id === transaction?.categoryId);
 
   // ====== 이펙트 ======
   useEffect(() => {
@@ -47,7 +45,19 @@ const TransactionDetail = () => {
     const reader = new FileReader();
     reader.onload = async (e) => {
       const imageData = e.target?.result as string;
-      dispatch(uploadReceipt({ transactionId: transaction.id, imageData }));
+      try {
+        await dispatch(
+          uploadReceipt({ transactionId: transaction.id, imageData })
+        ).unwrap();
+      } catch (err: unknown) {
+        let msg = "영수증 분석 중 에러가 발생했습니다.";
+        if (typeof err === "object" && err !== null) {
+          const errorObj = err as Record<string, unknown>;
+          if (typeof errorObj.error === "string") msg = errorObj.error;
+          else if (typeof errorObj.message === "string") msg = errorObj.message;
+        }
+        alert(msg + "\n다시 시도해 주세요.");
+      }
       // 파일 입력 초기화
       if (fileInputRef.current) {
         fileInputRef.current.value = "";
@@ -120,21 +130,6 @@ const TransactionDetail = () => {
         <Box sx={{ display: "flex", justifyContent: "space-between", mb: 2 }}>
           <Typography color="text.secondary">시간</Typography>
           <Typography>{transaction.time}</Typography>
-        </Box>
-
-        <Box sx={{ display: "flex", justifyContent: "space-between", mb: 2 }}>
-          <Typography color="text.secondary">카테고리</Typography>
-          <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
-            <Box
-              sx={{
-                width: 10,
-                height: 10,
-                borderRadius: "50%",
-                bgcolor: category?.color,
-              }}
-            />
-            <Typography>{category?.name}</Typography>
-          </Box>
         </Box>
 
         <Box sx={{ display: "flex", justifyContent: "space-between" }}>

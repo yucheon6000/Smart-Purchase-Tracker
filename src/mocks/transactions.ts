@@ -4,7 +4,7 @@ export interface PurchaseItem {
     quantity: number;
     unitPrice: number;
     totalPrice: number;
-    categoryId?: number; // 오타 수정 및 명확화
+    categoryId?: number;
 }
 
 export interface Transaction {
@@ -13,7 +13,6 @@ export interface Transaction {
     time: string;
     description: string;
     amount: number;
-    categoryId: number;
     type: 'income' | 'expense';
     items?: PurchaseItem[];
 }
@@ -25,7 +24,6 @@ export const transactions: Transaction[] = [
         time: '09:00',
         description: '월급',
         amount: 3000000,
-        categoryId: 1,
         type: 'income'
     },
     {
@@ -34,8 +32,17 @@ export const transactions: Transaction[] = [
         time: '12:30',
         description: '점심식사',
         amount: 12000,
-        categoryId: 2,
-        type: 'expense'
+        type: 'expense',
+        items: [
+            {
+                id: 'item1',
+                name: '비빔밥',
+                quantity: 1,
+                unitPrice: 12000,
+                totalPrice: 12000,
+                categoryId: 2 // 식비/식사
+            }
+        ]
     },
     {
         id: '3',
@@ -43,26 +50,25 @@ export const transactions: Transaction[] = [
         time: '13:15',
         description: '교통비',
         amount: 1500,
-        categoryId: 3,
         type: 'expense'
     },
     {
         id: '4',
         date: new Date('2025-04-22'),
         time: '10:30',
-        description: '커피',
+        description: '스타벅스',
         amount: 4500,
-        categoryId: 4,
-        type: 'expense'
-    },
-    {
-        id: '5',
-        date: new Date('2025-04-22'),
-        time: '11:00',
-        description: '저축',
-        amount: 500000,
-        categoryId: 5,
-        type: 'expense'
+        type: 'expense',
+        items: [
+            {
+                id: 'item1',
+                name: '아메리카노',
+                quantity: 1,
+                unitPrice: 4500,
+                totalPrice: 4500,
+                categoryId: 4 // 식비/카페
+            }
+        ]
     },
     {
         id: '6',
@@ -70,7 +76,6 @@ export const transactions: Transaction[] = [
         time: '15:30',
         description: '다이소',
         amount: 15000,
-        categoryId: 6,
         type: 'expense',
         items: [
             {
@@ -79,7 +84,7 @@ export const transactions: Transaction[] = [
                 quantity: 1,
                 unitPrice: 2000,
                 totalPrice: 2000,
-                categoryId: 4 // 다이소(오락)로 지정
+                categoryId: 7 // 쇼핑/생활용품
             },
             {
                 id: 'item2',
@@ -87,7 +92,7 @@ export const transactions: Transaction[] = [
                 quantity: 2,
                 unitPrice: 3000,
                 totalPrice: 6000,
-                categoryId: 6
+                categoryId: 7 // 쇼핑/생활용품
             },
             {
                 id: 'item3',
@@ -95,7 +100,7 @@ export const transactions: Transaction[] = [
                 quantity: 1,
                 unitPrice: 4000,
                 totalPrice: 4000,
-                categoryId: 6
+                categoryId: 7 // 쇼핑/생활용품
             },
             {
                 id: 'item4',
@@ -103,7 +108,7 @@ export const transactions: Transaction[] = [
                 quantity: 1,
                 unitPrice: 3000,
                 totalPrice: 3000,
-                categoryId: 6
+                categoryId: 7 // 쇼핑/생활용품
             }
         ]
     },
@@ -113,8 +118,33 @@ export const transactions: Transaction[] = [
         time: "11:00",
         description: "이마트",
         amount: 35000,
-        categoryId: 2,
-        type: "expense"
+        type: "expense",
+        items: [
+            {
+                id: 'item1',
+                name: '우유',
+                quantity: 2,
+                unitPrice: 3000,
+                totalPrice: 6000,
+                categoryId: 3 // 식비/식료품
+            },
+            {
+                id: 'item2',
+                name: '계란',
+                quantity: 1,
+                unitPrice: 8000,
+                totalPrice: 8000,
+                categoryId: 3 // 식비/식료품
+            },
+            {
+                id: 'item3',
+                name: '과일',
+                quantity: 1,
+                unitPrice: 21000,
+                totalPrice: 21000,
+                categoryId: 3 // 식비/식료품
+            }
+        ]
     },
     {
         id: "8",
@@ -122,8 +152,17 @@ export const transactions: Transaction[] = [
         time: "12:00",
         description: "버거킹",
         amount: 9800,
-        categoryId: 2,
-        type: "expense"
+        type: "expense",
+        items: [
+            {
+                id: 'item1',
+                name: '와퍼세트',
+                quantity: 1,
+                unitPrice: 9800,
+                totalPrice: 9800,
+                categoryId: 2 // 식비/식사
+            }
+        ]
     },
     {
         id: "9",
@@ -131,8 +170,25 @@ export const transactions: Transaction[] = [
         time: "13:00",
         description: "GS25",
         amount: 4500,
-        categoryId: 2,
-        type: "expense"
+        type: "expense",
+        items: [
+            {
+                id: 'item1',
+                name: '삼각김밥',
+                quantity: 1,
+                unitPrice: 2500,
+                totalPrice: 2500,
+                categoryId: 3 // 식비/식료품
+            },
+            {
+                id: 'item2',
+                name: '음료수',
+                quantity: 1,
+                unitPrice: 2000,
+                totalPrice: 2000,
+                categoryId: 3 // 식비/식료품
+            }
+        ]
     },
     {
         id: "10",
@@ -140,8 +196,17 @@ export const transactions: Transaction[] = [
         time: "14:00",
         description: "CGV",
         amount: 15000,
-        categoryId: 6,
-        type: "expense"
+        type: "expense",
+        items: [
+            {
+                id: 'item1',
+                name: '영화티켓',
+                quantity: 1,
+                unitPrice: 15000,
+                totalPrice: 15000,
+                categoryId: 0 // 여가문화/문화취미
+            }
+        ]
     },
     {
         id: "11",
@@ -149,8 +214,25 @@ export const transactions: Transaction[] = [
         time: "10:00",
         description: "교보문고",
         amount: 22000,
-        categoryId: 7,
-        type: "expense"
+        type: "expense",
+        items: [
+            {
+                id: 'item1',
+                name: '자기계발서',
+                quantity: 1,
+                unitPrice: 15000,
+                totalPrice: 15000,
+                categoryId: 9 // 교육학업/도서
+            },
+            {
+                id: 'item2',
+                name: '노트',
+                quantity: 2,
+                unitPrice: 3500,
+                totalPrice: 7000,
+                categoryId: 8 // 쇼핑/문구사무
+            }
+        ]
     },
     {
         id: "12",
@@ -158,8 +240,17 @@ export const transactions: Transaction[] = [
         time: "11:00",
         description: "올리브영",
         amount: 28000,
-        categoryId: 8,
-        type: "expense"
+        type: "expense",
+        items: [
+            {
+                id: 'item1',
+                name: '화장품',
+                quantity: 1,
+                unitPrice: 28000,
+                totalPrice: 28000,
+                categoryId: 7 // 쇼핑/생활용품
+            }
+        ]
     },
     {
         id: "13",
@@ -167,8 +258,17 @@ export const transactions: Transaction[] = [
         time: "12:00",
         description: "CU",
         amount: 3200,
-        categoryId: 2,
-        type: "expense"
+        type: "expense",
+        items: [
+            {
+                id: 'item1',
+                name: '아이스크림',
+                quantity: 1,
+                unitPrice: 3200,
+                totalPrice: 3200,
+                categoryId: 3 // 식비/식료품
+            }
+        ]
     },
     {
         id: "14",
@@ -176,8 +276,17 @@ export const transactions: Transaction[] = [
         time: "10:00",
         description: "투썸플레이스",
         amount: 7000,
-        categoryId: 4,
-        type: "expense"
+        type: "expense",
+        items: [
+            {
+                id: 'item1',
+                name: '카페라떼',
+                quantity: 1,
+                unitPrice: 7000,
+                totalPrice: 7000,
+                categoryId: 4 // 식비/카페
+            }
+        ]
     },
     {
         id: "15",
@@ -185,8 +294,25 @@ export const transactions: Transaction[] = [
         time: "11:00",
         description: "롯데마트",
         amount: 67000,
-        categoryId: 2,
-        type: "expense"
+        type: "expense",
+        items: [
+            {
+                id: 'item1',
+                name: '생필품',
+                quantity: 1,
+                unitPrice: 25000,
+                totalPrice: 25000,
+                categoryId: 7 // 쇼핑/생활용품
+            },
+            {
+                id: 'item2',
+                name: '식료품',
+                quantity: 1,
+                unitPrice: 42000,
+                totalPrice: 42000,
+                categoryId: 3 // 식비/식료품
+            }
+        ]
     },
     {
         id: "16",
@@ -194,8 +320,17 @@ export const transactions: Transaction[] = [
         time: "12:00",
         description: "맥도날드",
         amount: 8900,
-        categoryId: 2,
-        type: "expense"
+        type: "expense",
+        items: [
+            {
+                id: 'item1',
+                name: '빅맥세트',
+                quantity: 1,
+                unitPrice: 8900,
+                totalPrice: 8900,
+                categoryId: 2 // 식비/식사
+            }
+        ]
     },
     {
         id: "17",
@@ -203,8 +338,33 @@ export const transactions: Transaction[] = [
         time: "10:00",
         description: "유니클로",
         amount: 49000,
-        categoryId: 8,
-        type: "expense"
+        type: "expense",
+        items: [
+            {
+                id: 'item1',
+                name: '티셔츠',
+                quantity: 2,
+                unitPrice: 15000,
+                totalPrice: 30000,
+                categoryId: 6 // 쇼핑/패션잡화
+            },
+            {
+                id: 'item2',
+                name: '양말',
+                quantity: 3,
+                unitPrice: 5000,
+                totalPrice: 15000,
+                categoryId: 6 // 쇼핑/패션잡화
+            },
+            {
+                id: 'item3',
+                name: '속옷',
+                quantity: 1,
+                unitPrice: 4000,
+                totalPrice: 4000,
+                categoryId: 6 // 쇼핑/패션잡화
+            }
+        ]
     },
     {
         id: "18",
@@ -212,8 +372,25 @@ export const transactions: Transaction[] = [
         time: "11:00",
         description: "다이소",
         amount: 12000,
-        categoryId: 9,
-        type: "expense"
+        type: "expense",
+        items: [
+            {
+                id: 'item1',
+                name: '화장지',
+                quantity: 2,
+                unitPrice: 3000,
+                totalPrice: 6000,
+                categoryId: 7 // 쇼핑/생활용품
+            },
+            {
+                id: 'item2',
+                name: '칫솔',
+                quantity: 2,
+                unitPrice: 3000,
+                totalPrice: 6000,
+                categoryId: 7 // 쇼핑/생활용품
+            }
+        ]
     },
     {
         id: "19",
@@ -221,8 +398,17 @@ export const transactions: Transaction[] = [
         time: "12:00",
         description: "스타벅스",
         amount: 5100,
-        categoryId: 4,
-        type: "expense"
+        type: "expense",
+        items: [
+            {
+                id: 'item1',
+                name: '아메리카노',
+                quantity: 1,
+                unitPrice: 5100,
+                totalPrice: 5100,
+                categoryId: 4 // 식비/카페
+            }
+        ]
     },
     {
         id: "20",
@@ -230,8 +416,17 @@ export const transactions: Transaction[] = [
         time: "10:00",
         description: "이디야커피",
         amount: 4500,
-        categoryId: 4,
-        type: "expense"
+        type: "expense",
+        items: [
+            {
+                id: 'item1',
+                name: '카페라떼',
+                quantity: 1,
+                unitPrice: 4500,
+                totalPrice: 4500,
+                categoryId: 4 // 식비/카페
+            }
+        ]
     },
     {
         id: "21",
@@ -239,8 +434,25 @@ export const transactions: Transaction[] = [
         time: "11:00",
         description: "홈플러스",
         amount: 45000,
-        categoryId: 2,
-        type: "expense"
+        type: "expense",
+        items: [
+            {
+                id: 'item1',
+                name: '식료품',
+                quantity: 1,
+                unitPrice: 30000,
+                totalPrice: 30000,
+                categoryId: 3 // 식비/식료품
+            },
+            {
+                id: 'item2',
+                name: '생필품',
+                quantity: 1,
+                unitPrice: 15000,
+                totalPrice: 15000,
+                categoryId: 7 // 쇼핑/생활용품
+            }
+        ]
     },
     {
         id: "22",
@@ -248,8 +460,25 @@ export const transactions: Transaction[] = [
         time: "12:00",
         description: "GS25",
         amount: 6300,
-        categoryId: 2,
-        type: "expense"
+        type: "expense",
+        items: [
+            {
+                id: 'item1',
+                name: '도시락',
+                quantity: 1,
+                unitPrice: 4500,
+                totalPrice: 4500,
+                categoryId: 3 // 식비/식료품
+            },
+            {
+                id: 'item2',
+                name: '음료수',
+                quantity: 1,
+                unitPrice: 1800,
+                totalPrice: 1800,
+                categoryId: 3 // 식비/식료품
+            }
+        ]
     },
     {
         id: "23",
@@ -257,8 +486,17 @@ export const transactions: Transaction[] = [
         time: "10:00",
         description: "메가커피",
         amount: 3000,
-        categoryId: 4,
-        type: "expense"
+        type: "expense",
+        items: [
+            {
+                id: 'item1',
+                name: '아메리카노',
+                quantity: 1,
+                unitPrice: 3000,
+                totalPrice: 3000,
+                categoryId: 4 // 식비/카페
+            }
+        ]
     },
     {
         id: "24",
@@ -266,8 +504,25 @@ export const transactions: Transaction[] = [
         time: "11:00",
         description: "CU",
         amount: 8400,
-        categoryId: 2,
-        type: "expense"
+        type: "expense",
+        items: [
+            {
+                id: 'item1',
+                name: '삼각김밥',
+                quantity: 2,
+                unitPrice: 2500,
+                totalPrice: 5000,
+                categoryId: 3 // 식비/식료품
+            },
+            {
+                id: 'item2',
+                name: '음료수',
+                quantity: 1,
+                unitPrice: 3400,
+                totalPrice: 3400,
+                categoryId: 3 // 식비/식료품
+            }
+        ]
     },
     {
         id: "25",
@@ -275,8 +530,17 @@ export const transactions: Transaction[] = [
         time: "12:00",
         description: "버거킹",
         amount: 10200,
-        categoryId: 2,
-        type: "expense"
+        type: "expense",
+        items: [
+            {
+                id: 'item1',
+                name: '와퍼세트',
+                quantity: 1,
+                unitPrice: 10200,
+                totalPrice: 10200,
+                categoryId: 2 // 식비/식사
+            }
+        ]
     },
     {
         id: "26",
@@ -284,8 +548,17 @@ export const transactions: Transaction[] = [
         time: "10:00",
         description: "스타벅스",
         amount: 6800,
-        categoryId: 4,
-        type: "expense"
+        type: "expense",
+        items: [
+            {
+                id: 'item1',
+                name: '카페라떼',
+                quantity: 1,
+                unitPrice: 6800,
+                totalPrice: 6800,
+                categoryId: 4 // 식비/카페
+            }
+        ]
     },
     {
         id: "27",
@@ -293,8 +566,17 @@ export const transactions: Transaction[] = [
         time: "11:00",
         description: "이마트",
         amount: 28000,
-        categoryId: 2,
-        type: "expense"
+        type: "expense",
+        items: [
+            {
+                id: 'item1',
+                name: '식료품',
+                quantity: 1,
+                unitPrice: 28000,
+                totalPrice: 28000,
+                categoryId: 3 // 식비/식료품
+            }
+        ]
     },
     {
         id: "28",
@@ -302,8 +584,17 @@ export const transactions: Transaction[] = [
         time: "12:00",
         description: "CGV",
         amount: 15000,
-        categoryId: 6,
-        type: "expense"
+        type: "expense",
+        items: [
+            {
+                id: 'item1',
+                name: '영화티켓',
+                quantity: 1,
+                unitPrice: 15000,
+                totalPrice: 15000,
+                categoryId: 0 // 여가문화/문화취미
+            }
+        ]
     },
     {
         id: "29",
@@ -311,8 +602,17 @@ export const transactions: Transaction[] = [
         time: "10:00",
         description: "올리브영",
         amount: 32000,
-        categoryId: 8,
-        type: "expense"
+        type: "expense",
+        items: [
+            {
+                id: 'item1',
+                name: '화장품',
+                quantity: 1,
+                unitPrice: 32000,
+                totalPrice: 32000,
+                categoryId: 7 // 쇼핑/생활용품
+            }
+        ]
     },
     {
         id: "30",
@@ -320,8 +620,25 @@ export const transactions: Transaction[] = [
         time: "11:00",
         description: "GS25",
         amount: 5600,
-        categoryId: 2,
-        type: "expense"
+        type: "expense",
+        items: [
+            {
+                id: 'item1',
+                name: '도시락',
+                quantity: 1,
+                unitPrice: 4500,
+                totalPrice: 4500,
+                categoryId: 3 // 식비/식료품
+            },
+            {
+                id: 'item2',
+                name: '음료수',
+                quantity: 1,
+                unitPrice: 1100,
+                totalPrice: 1100,
+                categoryId: 3 // 식비/식료품
+            }
+        ]
     },
     {
         id: "31",
@@ -329,8 +646,17 @@ export const transactions: Transaction[] = [
         time: "12:00",
         description: "투썸플레이스",
         amount: 6500,
-        categoryId: 4,
-        type: "expense"
+        type: "expense",
+        items: [
+            {
+                id: 'item1',
+                name: '아메리카노',
+                quantity: 1,
+                unitPrice: 6500,
+                totalPrice: 6500,
+                categoryId: 4 // 식비/카페
+            }
+        ]
     },
     {
         id: "32",
@@ -338,8 +664,17 @@ export const transactions: Transaction[] = [
         time: "10:00",
         description: "맥도날드",
         amount: 9800,
-        categoryId: 2,
-        type: "expense"
+        type: "expense",
+        items: [
+            {
+                id: 'item1',
+                name: '빅맥세트',
+                quantity: 1,
+                unitPrice: 9800,
+                totalPrice: 9800,
+                categoryId: 2 // 식비/식사
+            }
+        ]
     },
     {
         id: "33",
@@ -347,8 +682,17 @@ export const transactions: Transaction[] = [
         time: "11:00",
         description: "다이소",
         amount: 15000,
-        categoryId: 9,
-        type: "expense"
+        type: "expense",
+        items: [
+            {
+                id: 'item1',
+                name: '생활용품',
+                quantity: 1,
+                unitPrice: 15000,
+                totalPrice: 15000,
+                categoryId: 7 // 쇼핑/생활용품
+            }
+        ]
     },
     {
         id: "34",
@@ -356,8 +700,17 @@ export const transactions: Transaction[] = [
         time: "12:00",
         description: "스타벅스",
         amount: 7200,
-        categoryId: 4,
-        type: "expense"
+        type: "expense",
+        items: [
+            {
+                id: 'item1',
+                name: '카페라떼',
+                quantity: 1,
+                unitPrice: 7200,
+                totalPrice: 7200,
+                categoryId: 4 // 식비/카페
+            }
+        ]
     },
     {
         id: "35",
@@ -365,7 +718,16 @@ export const transactions: Transaction[] = [
         time: "10:00",
         description: "이마트",
         amount: 42000,
-        categoryId: 2,
-        type: "expense"
+        type: "expense",
+        items: [
+            {
+                id: 'item1',
+                name: '식료품',
+                quantity: 1,
+                unitPrice: 42000,
+                totalPrice: 42000,
+                categoryId: 3 // 식비/식료품
+            }
+        ]
     }
 ];

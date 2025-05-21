@@ -59,7 +59,7 @@ const PurchaseItemList: React.FC<PurchaseItemListProps> = ({ items }) => {
                       color="text.secondary"
                       sx={{ textAlign: "start" }}
                     >
-                      {item.quantity}개 × {item.unitPrice.toLocaleString()}원
+                      {item.unitPrice.toLocaleString()}원 × {item.quantity}개
                     </Typography>
                   </Box>
                 </Box>
