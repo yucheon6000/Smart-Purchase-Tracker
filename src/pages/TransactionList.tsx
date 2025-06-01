@@ -61,7 +61,7 @@ const TransactionList = () => {
   let sortedDates = getSortedDateKeys(groupedTransactions);
   sortedDates = sortedDates.sort((a, b) => b.localeCompare(a));
 
-  // 각 날짜 그룹 내의 거래내역을 시간순으로 정렬
+  // 각 날짜 그룹 내의 거래 내역을 시간순으로 정렬
   Object.keys(groupedTransactions).forEach((dateKey) => {
     groupedTransactions[dateKey].sort((a, b) => {
       const [aHours, aMinutes] = a.time.split(":").map(Number);

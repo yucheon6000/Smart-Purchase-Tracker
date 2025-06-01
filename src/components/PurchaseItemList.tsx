@@ -15,10 +15,7 @@ const PurchaseItemList: React.FC<PurchaseItemListProps> = ({ items }) => {
       </Typography>
       <Box>
         {items.map((item, index) => {
-          // 각 항목의 categoryId를 우선 사용, 없으면 2(식비)로 대체
-          const category = categories.find(
-            (c) => c.id === (item.categoryId || 2)
-          );
+          const category = categories.find((c) => c.id === item.categoryId);
           return (
             <React.Fragment key={item.id}>
               <Box
@@ -46,7 +43,7 @@ const PurchaseItemList: React.FC<PurchaseItemListProps> = ({ items }) => {
                       mr: 0.1,
                     }}
                   >
-                    {category?.name || "기타"}
+                    {category?.name}
                   </Box>
                   <Box sx={{ mr: 0.1 }}>
                     <Typography

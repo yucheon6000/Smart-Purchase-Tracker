@@ -9,7 +9,7 @@ import { uploadReceipt } from "../store/transactionsSlice";
 import ReceiptUploadButton from "../components/ReceiptUploadButton";
 
 const TransactionDetail = () => {
-  // ====== 변수 선언부 (정렬) ======
+  // 변수 선언부
   const { id } = useParams();
   const dispatch = useDispatch<AppDispatch>();
   const transactions = useSelector(
@@ -23,14 +23,14 @@ const TransactionDetail = () => {
   const transaction = transactions.find((t) => t.id === id);
   const dateObj = transaction?.date;
 
-  // ====== 이펙트 ======
+  // 이펙트
   useEffect(() => {
     // 페이지 진입 시 스크롤 맨 위로 이동
     topRef.current?.scrollIntoView({ behavior: "auto" });
     window.scrollTo({ top: 0, behavior: "auto" });
   }, []);
 
-  // ====== 핸들러 ======
+  // 핸들러
   // 버튼 누르면 <input type="file"> 트리거
   const handleReceiptScan = () => {
     fileInputRef.current?.click();
@@ -66,8 +66,7 @@ const TransactionDetail = () => {
     reader.readAsDataURL(file);
   };
 
-  // ====== 렌더 ======
-  /* --- 거래가 없을 때 --- */
+  // 거래가 없을 때 렌더
   if (!transaction) {
     return (
       <Box sx={{ p: 3, textAlign: "center" }}>
@@ -76,7 +75,7 @@ const TransactionDetail = () => {
     );
   }
 
-  /* --- 날짜·금액 포맷 --- */
+  // 날짜·금액 포맷
   const formattedDate = dateObj
     ? dateObj.toLocaleDateString("ko-KR", {
         year: "numeric",
@@ -89,12 +88,10 @@ const TransactionDetail = () => {
     transaction.amount
   );
 
-  /* --- 실제 렌더링 --- */
   return (
     <Box ref={topRef}>
       <PageHeader title="상세 내역" showBackButton />
 
-      {/* 거래 기본 정보 카드 */}
       <Box
         sx={{
           bgcolor: "background.paper",
@@ -139,13 +136,13 @@ const TransactionDetail = () => {
           </Typography>
         </Box>
 
-        {/* 구매 항목 */}
+        {/* 구매 항목 목록 */}
         {transaction.items && transaction.items.length > 0 && (
           <PurchaseItemList items={transaction.items} />
         )}
       </Box>
 
-      {/* 영수증 촬영/업로드 버튼 */}
+      {/* 영수증 촬영 버튼 */}
       <Box sx={{ p: 2 }}>
         <ReceiptUploadButton
           uploading={!!receiptUploadLoading}

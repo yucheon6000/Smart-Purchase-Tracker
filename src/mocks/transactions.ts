@@ -40,7 +40,7 @@ export const transactions: Transaction[] = [
                 quantity: 1,
                 unitPrice: 12000,
                 totalPrice: 12000,
-                categoryId: 2 // 식비/식사
+                categoryId: 2
             }
         ]
     },
@@ -66,7 +66,7 @@ export const transactions: Transaction[] = [
                 quantity: 1,
                 unitPrice: 4500,
                 totalPrice: 4500,
-                categoryId: 4 // 식비/카페
+                categoryId: 4
             }
         ]
     },
@@ -84,7 +84,7 @@ export const transactions: Transaction[] = [
                 quantity: 1,
                 unitPrice: 2000,
                 totalPrice: 2000,
-                categoryId: 7 // 쇼핑/생활용품
+                categoryId: 7
             },
             {
                 id: 'item2',
@@ -92,7 +92,7 @@ export const transactions: Transaction[] = [
                 quantity: 2,
                 unitPrice: 3000,
                 totalPrice: 6000,
-                categoryId: 7 // 쇼핑/생활용품
+                categoryId: 7
             },
             {
                 id: 'item3',
@@ -100,7 +100,7 @@ export const transactions: Transaction[] = [
                 quantity: 1,
                 unitPrice: 4000,
                 totalPrice: 4000,
-                categoryId: 7 // 쇼핑/생활용품
+                categoryId: 7
             },
             {
                 id: 'item4',
@@ -108,7 +108,7 @@ export const transactions: Transaction[] = [
                 quantity: 1,
                 unitPrice: 3000,
                 totalPrice: 3000,
-                categoryId: 7 // 쇼핑/생활용품
+                categoryId: 7
             }
         ]
     },
@@ -126,7 +126,7 @@ export const transactions: Transaction[] = [
                 quantity: 2,
                 unitPrice: 3000,
                 totalPrice: 6000,
-                categoryId: 3 // 식비/식료품
+                categoryId: 3
             },
             {
                 id: 'item2',
@@ -134,7 +134,7 @@ export const transactions: Transaction[] = [
                 quantity: 1,
                 unitPrice: 8000,
                 totalPrice: 8000,
-                categoryId: 3 // 식비/식료품
+                categoryId: 3
             },
             {
                 id: 'item3',
@@ -142,7 +142,7 @@ export const transactions: Transaction[] = [
                 quantity: 1,
                 unitPrice: 21000,
                 totalPrice: 21000,
-                categoryId: 3 // 식비/식료품
+                categoryId: 3
             }
         ]
     },
@@ -160,7 +160,7 @@ export const transactions: Transaction[] = [
                 quantity: 1,
                 unitPrice: 9800,
                 totalPrice: 9800,
-                categoryId: 2 // 식비/식사
+                categoryId: 2
             }
         ]
     },
@@ -178,7 +178,7 @@ export const transactions: Transaction[] = [
                 quantity: 1,
                 unitPrice: 2500,
                 totalPrice: 2500,
-                categoryId: 14 // 식비/식료품
+                categoryId: 14
             },
             {
                 id: 'item2',
@@ -186,7 +186,7 @@ export const transactions: Transaction[] = [
                 quantity: 1,
                 unitPrice: 2000,
                 totalPrice: 2000,
-                categoryId: 14 // 식비/식료품
+                categoryId: 14
             }
         ]
     },
@@ -204,7 +204,7 @@ export const transactions: Transaction[] = [
                 quantity: 1,
                 unitPrice: 15000,
                 totalPrice: 15000,
-                categoryId: 0 // 여가문화/문화취미
+                categoryId: 0
             }
         ]
     },
@@ -222,7 +222,7 @@ export const transactions: Transaction[] = [
                 quantity: 1,
                 unitPrice: 15000,
                 totalPrice: 15000,
-                categoryId: 9 // 교육학업/도서
+                categoryId: 9
             },
             {
                 id: 'item2',
@@ -230,7 +230,7 @@ export const transactions: Transaction[] = [
                 quantity: 2,
                 unitPrice: 3500,
                 totalPrice: 7000,
-                categoryId: 8 // 쇼핑/문구사무
+                categoryId: 8
             }
         ]
     },
@@ -248,7 +248,7 @@ export const transactions: Transaction[] = [
                 quantity: 1,
                 unitPrice: 28000,
                 totalPrice: 28000,
-                categoryId: 7 // 쇼핑/생활용품
+                categoryId: 7
             }
         ]
     },
@@ -266,7 +266,7 @@ export const transactions: Transaction[] = [
                 quantity: 1,
                 unitPrice: 3200,
                 totalPrice: 3200,
-                categoryId: 14 // 식비/식료품
+                categoryId: 14
             }
         ]
     },
@@ -284,7 +284,7 @@ export const transactions: Transaction[] = [
                 quantity: 1,
                 unitPrice: 7000,
                 totalPrice: 7000,
-                categoryId: 4 // 식비/카페
+                categoryId: 4
             }
         ]
     },
@@ -302,7 +302,7 @@ export const transactions: Transaction[] = [
                 quantity: 1,
                 unitPrice: 25000,
                 totalPrice: 25000,
-                categoryId: 7 // 쇼핑/생활용품
+                categoryId: 7
             },
             {
                 id: 'item2',
@@ -310,7 +310,7 @@ export const transactions: Transaction[] = [
                 quantity: 1,
                 unitPrice: 42000,
                 totalPrice: 42000,
-                categoryId: 3 // 식비/식료품
+                categoryId: 3
             }
         ]
     },
@@ -328,7 +328,7 @@ export const transactions: Transaction[] = [
                 quantity: 1,
                 unitPrice: 8900,
                 totalPrice: 8900,
-                categoryId: 2 // 식비/식사
+                categoryId: 2
             }
         ]
     },
@@ -346,7 +346,7 @@ export const transactions: Transaction[] = [
                 quantity: 2,
                 unitPrice: 15000,
                 totalPrice: 30000,
-                categoryId: 6 // 쇼핑/패션잡화
+                categoryId: 6
             },
             {
                 id: 'item2',
@@ -354,7 +354,7 @@ export const transactions: Transaction[] = [
                 quantity: 3,
                 unitPrice: 5000,
                 totalPrice: 15000,
-                categoryId: 6 // 쇼핑/패션잡화
+                categoryId: 6
             },
             {
                 id: 'item3',
@@ -362,7 +362,7 @@ export const transactions: Transaction[] = [
                 quantity: 1,
                 unitPrice: 4000,
                 totalPrice: 4000,
-                categoryId: 6 // 쇼핑/패션잡화
+                categoryId: 6
             }
         ]
     },
@@ -380,7 +380,7 @@ export const transactions: Transaction[] = [
                 quantity: 2,
                 unitPrice: 3000,
                 totalPrice: 6000,
-                categoryId: 7 // 쇼핑/생활용품
+                categoryId: 7
             },
             {
                 id: 'item2',
@@ -388,7 +388,7 @@ export const transactions: Transaction[] = [
                 quantity: 2,
                 unitPrice: 3000,
                 totalPrice: 6000,
-                categoryId: 7 // 쇼핑/생활용품
+                categoryId: 7
             }
         ]
     },
@@ -406,7 +406,7 @@ export const transactions: Transaction[] = [
                 quantity: 1,
                 unitPrice: 5100,
                 totalPrice: 5100,
-                categoryId: 4 // 식비/카페
+                categoryId: 4
             }
         ]
     },
@@ -424,7 +424,7 @@ export const transactions: Transaction[] = [
                 quantity: 1,
                 unitPrice: 4500,
                 totalPrice: 4500,
-                categoryId: 4 // 식비/카페
+                categoryId: 4
             }
         ]
     },
@@ -442,7 +442,7 @@ export const transactions: Transaction[] = [
                 quantity: 1,
                 unitPrice: 30000,
                 totalPrice: 30000,
-                categoryId: 3 // 식비/식료품
+                categoryId: 3
             },
             {
                 id: 'item2',
@@ -450,7 +450,7 @@ export const transactions: Transaction[] = [
                 quantity: 1,
                 unitPrice: 15000,
                 totalPrice: 15000,
-                categoryId: 7 // 쇼핑/생활용품
+                categoryId: 7
             }
         ]
     },
@@ -468,7 +468,7 @@ export const transactions: Transaction[] = [
                 quantity: 1,
                 unitPrice: 4500,
                 totalPrice: 4500,
-                categoryId: 14 // 식비/식료품
+                categoryId: 14
             },
             {
                 id: 'item2',
@@ -476,7 +476,7 @@ export const transactions: Transaction[] = [
                 quantity: 1,
                 unitPrice: 1800,
                 totalPrice: 1800,
-                categoryId: 14 // 식비/식료품
+                categoryId: 14
             }
         ]
     },
@@ -494,7 +494,7 @@ export const transactions: Transaction[] = [
                 quantity: 1,
                 unitPrice: 3000,
                 totalPrice: 3000,
-                categoryId: 4 // 식비/카페
+                categoryId: 4
             }
         ]
     },
@@ -522,7 +522,7 @@ export const transactions: Transaction[] = [
                 quantity: 1,
                 unitPrice: 10200,
                 totalPrice: 10200,
-                categoryId: 2 // 식비/식사
+                categoryId: 2
             }
         ]
     },
@@ -540,7 +540,7 @@ export const transactions: Transaction[] = [
                 quantity: 1,
                 unitPrice: 6800,
                 totalPrice: 6800,
-                categoryId: 4 // 식비/카페
+                categoryId: 4
             }
         ]
     },
@@ -558,7 +558,7 @@ export const transactions: Transaction[] = [
                 quantity: 1,
                 unitPrice: 28000,
                 totalPrice: 28000,
-                categoryId: 3 // 식비/식료품
+                categoryId: 3
             }
         ]
     },
@@ -576,7 +576,7 @@ export const transactions: Transaction[] = [
                 quantity: 1,
                 unitPrice: 15000,
                 totalPrice: 15000,
-                categoryId: 0 // 여가문화/문화취미
+                categoryId: 0
             }
         ]
     },
@@ -594,7 +594,7 @@ export const transactions: Transaction[] = [
                 quantity: 1,
                 unitPrice: 32000,
                 totalPrice: 32000,
-                categoryId: 7 // 쇼핑/생활용품
+                categoryId: 7
             }
         ]
     },
@@ -623,7 +623,7 @@ export const transactions: Transaction[] = [
                 quantity: 1,
                 unitPrice: 6500,
                 totalPrice: 6500,
-                categoryId: 4 // 식비/카페
+                categoryId: 4
             }
         ]
     },
@@ -641,7 +641,7 @@ export const transactions: Transaction[] = [
                 quantity: 1,
                 unitPrice: 9800,
                 totalPrice: 9800,
-                categoryId: 2 // 식비/식사
+                categoryId: 2
             }
         ]
     },
@@ -659,7 +659,7 @@ export const transactions: Transaction[] = [
                 quantity: 1,
                 unitPrice: 15000,
                 totalPrice: 15000,
-                categoryId: 7 // 쇼핑/생활용품
+                categoryId: 7
             }
         ]
     },
@@ -677,7 +677,7 @@ export const transactions: Transaction[] = [
                 quantity: 1,
                 unitPrice: 7200,
                 totalPrice: 7200,
-                categoryId: 4 // 식비/카페
+                categoryId: 4
             }
         ]
     },
@@ -695,7 +695,7 @@ export const transactions: Transaction[] = [
                 quantity: 1,
                 unitPrice: 42000,
                 totalPrice: 42000,
-                categoryId: 3 // 식비/식료품
+                categoryId: 3
             }
         ]
     }

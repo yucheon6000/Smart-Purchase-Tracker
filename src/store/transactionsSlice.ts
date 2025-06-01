@@ -1,4 +1,3 @@
-// Redux Toolkit의 createSlice를 사용하여 트랜잭션 관련 상태와 리듀서를 정의합니다.
 import { createSlice, PayloadAction, createAsyncThunk } from '@reduxjs/toolkit';
 import { Transaction, PurchaseItem } from '../mocks/transactions';
 import { transactions as initialTransactions } from '../mocks/transactions';
@@ -22,20 +21,19 @@ export const uploadReceipt = createAsyncThunk(
       );
       const result = await response.json();
       if (result.purchaseItems) {
-        // 카테고리 문자열을 ID로 변환
         const mappedItems = result.purchaseItems.map((item: { item: string; count: number; price_per_one: number; price: number; category: string }): PurchaseItem => {
           const category = categories.find(c => c.fullName == item.category);
           return {
-            id: Math.random().toString(36).substr(2, 9), // 임시 ID 생성
+            id: Math.random().toString(36).substr(2, 9), // 임시 ID
             name: item.item,
             quantity: item.count,
             unitPrice: item.price_per_one,
             totalPrice: item.price,
-            categoryId: category?.id // 매칭되는 카테고리가 없으면 undefined
+            categoryId: category?.id
           };
         });
 
-        // mappedItems의 합계로 amount 계산
+        // 총 합계 계산
         const amount = mappedItems.reduce((sum: number, item: PurchaseItem) => sum + item.totalPrice, 0);
 
         // 새로운 거래내역 생성 (TransactionList에서 호출된 경우)
@@ -45,7 +43,7 @@ export const uploadReceipt = createAsyncThunk(
             date: new Date(result.date),
             time: result.time,
             description: result.description,
-            amount: amount, // mappedItems의 합계로 설정
+            amount: amount,
             type: 'expense',
             items: mappedItems
           };
@@ -63,38 +61,30 @@ export const uploadReceipt = createAsyncThunk(
   }
 );
 
-// 트랜잭션 상태의 타입을 정의합니다.
 interface TransactionsState {
   transactions: Transaction[];
   receiptUploadLoading?: boolean;
   receiptUploadError?: string | null;
 }
 
-// 초기 상태를 설정합니다.
 const initialState: TransactionsState = {
   transactions: initialTransactions,
 };
 
-// 트랜잭션 관련 slice를 생성합니다.
 const transactionsSlice = createSlice({
-  name: 'transactions', // slice의 이름
-  initialState,         // 초기 상태
-  reducers: {           // 상태를 변경하는 리듀서 함수들
-
-    // 트랜잭션 목록을 설정합니다.
+  name: 'transactions',
+  initialState,
+  reducers: {
     setTransactions(state, action: PayloadAction<Transaction[]>) {
       state.transactions = action.payload;
     },
-    // 트랜잭션을 추가합니다.
     addTransaction(state, action: PayloadAction<Transaction>) {
       state.transactions.push(action.payload);
     },
-    // 트랜잭션을 수정합니다.
     updateTransaction(state, action: PayloadAction<Transaction>) {
       const idx = state.transactions.findIndex(t => t.id === action.payload.id);
       if (idx !== -1) state.transactions[idx] = action.payload;
     },
-    // 트랜잭션을 삭제합니다.
     deleteTransaction(state, action: PayloadAction<string>) {
       state.transactions = state.transactions.filter(t => t.id !== action.payload);
     },
@@ -130,6 +120,5 @@ const transactionsSlice = createSlice({
   },
 });
 
-// 액션과 리듀서를 export 합니다.
 export const { setTransactions, addTransaction, updateTransaction, deleteTransaction } = transactionsSlice.actions;
 export default transactionsSlice.reducer;

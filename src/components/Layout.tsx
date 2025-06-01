@@ -92,7 +92,7 @@ const Layout = ({ children }: LayoutProps) => {
           px: 2,
           py: 3,
           marginTop: 8,
-          marginBottom: 8, // 하단바 공간 확보
+          marginBottom: 8,
           "@media (max-width: 500px)": {
             px: 1,
           },
