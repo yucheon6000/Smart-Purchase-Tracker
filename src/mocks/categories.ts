@@ -96,10 +96,4 @@ export const categories: Category[] = [
         fullName: "기타/편의점",
         color: "#D4A5A5"
     },
-    // {
-    //     id: -1,
-    //     name: "기타",
-    //     fullName: "기타",
-    //     color: "#D4A5A5"
-    // }
 ]

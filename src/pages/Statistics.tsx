@@ -187,7 +187,10 @@ const Statistics = () => {
                   }}
                   labelStyle={{ color: theme.palette.text.secondary }}
                   itemStyle={{ color: theme.palette.text.primary }}
-                  formatter={(value: number) => value.toLocaleString()}
+                  formatter={(value: number) => [
+                    `${value.toLocaleString()}원`,
+                    null,
+                  ]}
                 />
                 <Bar dataKey="sum">
                   {chartData.map((entry, idx) => (
