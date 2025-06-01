@@ -1,0 +1,36 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+# Smart Purchase Tracker Project Overview
+
+This is a React-based web application for tracking purchases and expenses. The project uses TypeScript, Vite, and Material-UI for development.
+
+## Main Entry Points
+- [src/main.tsx](mdc:src/main.tsx) - Application entry point
+- [src/App.tsx](mdc:src/App.tsx) - Root component
+- [index.html](mdc:index.html) - HTML template
+
+## Key Directories
+- `src/components/` - Reusable React components
+- `src/pages/` - Page-level components
+- `src/store/` - Redux store configuration and slices
+- `src/utils/` - Utility functions and helpers
+- `src/styles/` - Global styles and theme configuration
+- `src/assets/` - Static assets like images and icons
+- `src/mocks/` - Mock data for development
+
+## Build and Development
+- Development server: `npm run dev`
+- Production build: `npm run build`
+- Deployment: `npm run deploy` (deploys to GitHub Pages)
+
+## Key Technologies
+- React 19
+- TypeScript
+- Material-UI
+- Redux Toolkit
+- React Router
+- Vite
+- Recharts (for data visualization)
